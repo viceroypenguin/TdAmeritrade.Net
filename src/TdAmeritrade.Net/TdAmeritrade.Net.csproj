@@ -35,6 +35,7 @@
 		<Using Include="Refit" />
 		<Using Include="System.Runtime.Serialization" />
 		<Using Include="System.Text.Json.Serialization" />
+		<Using Include="TdAmeritrade.Converters" />
 	</ItemGroup>
 
 	<ItemGroup>
