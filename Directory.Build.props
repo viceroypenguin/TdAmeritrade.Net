@@ -1,0 +1,17 @@
+﻿<Project>
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Meziantou.Analyzer" Version="1.0.700">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+	</ItemGroup>
+</Project>
