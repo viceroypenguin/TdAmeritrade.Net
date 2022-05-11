@@ -112,7 +112,7 @@ public class PriceHistoryResponse
 
 public class Candle
 {
-	[JsonConverter(typeof(DateTimeConverter))]
+	[JsonConverter(typeof(UnixDateTimeConverter))]
 	public DateTimeOffset Datetime { get; set; }
 	public decimal Close { get; set; }
 	public decimal High { get; set; }
