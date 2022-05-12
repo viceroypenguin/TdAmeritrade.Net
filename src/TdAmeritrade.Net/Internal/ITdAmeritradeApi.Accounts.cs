@@ -1,4 +1,4 @@
-﻿namespace TdAmeritrade;
+﻿namespace TdAmeritrade.Internal;
 
 using Models.Accounts;
 
@@ -7,7 +7,7 @@ public partial interface ITdAmeritradeApi
 	/// <summary>
 	/// This API allows the developer to get a list of accounts for the specified login
 	/// </summary>
-	/// <param name="token">
+	/// <param name="authorization">
 	/// A current and valid <see cref="Models.Authentication.LoginResponse.AccessToken"/>
 	/// </param>
 	/// <param name="fields">
@@ -21,12 +21,12 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/account-access/apis/get/accounts-0"/>
 	/// </remarks>
 	[Get("/v1/accounts")]
-	Task<ApiResponse<IReadOnlyList<AccountContainer>>> GetAccounts([Authorize("Bearer")] string? token, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string>? fields = default);
+	Task<ApiResponse<IReadOnlyList<AccountContainer>>> GetAccounts([Authorize] string? authorization, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string>? fields = default);
 
 	/// <summary>
 	/// This API allows the developer to get information about a specific account
 	/// </summary>
-	/// <param name="token">
+	/// <param name="authorization">
 	/// A current and valid <see cref="Models.Authentication.LoginResponse.AccessToken"/>
 	/// </param>
 	/// <param name="accountId">
@@ -43,5 +43,5 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/account-access/apis/get/accounts/%7BaccountId%7D-0"/>
 	/// </remarks>
 	[Get("/v1/accounts/{accountId}")]
-	Task<ApiResponse<AccountContainer>> GetAccount([Authorize("Bearer")] string? token, string? accountId, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string>? fields = default);
+	Task<ApiResponse<AccountContainer>> GetAccount([Authorize] string? authorization, string? accountId, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string>? fields = default);
 }

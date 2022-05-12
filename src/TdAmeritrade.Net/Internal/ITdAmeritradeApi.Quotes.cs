@@ -1,4 +1,4 @@
-﻿namespace TdAmeritrade;
+﻿namespace TdAmeritrade.Internal;
 
 using Models.Quotes;
 
@@ -7,7 +7,7 @@ public partial interface ITdAmeritradeApi
 	/// <summary>
 	/// This API allows the developer to get the quote information for a single symbol
 	/// </summary>
-	/// <param name="token">
+	/// <param name="authorization">
 	/// A current and valid <see cref="Models.Authentication.LoginResponse.AccessToken"/>; optional. If not provided, <paramref name="apikey"/> must be provided.
 	/// </param>
 	/// <param name="symbol">
@@ -24,12 +24,12 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/quotes/apis/get/marketdata/%7Bsymbol%7D/quotes"/>
 	/// </remarks>
 	[Get("/v1/marketdata/{symbol}/quotes")]
-	Task<ApiResponse<IReadOnlyDictionary<string, Quote>>> GetQuote([Authorize("Bearer")] string? token, string symbol, string? apikey = default);
+	Task<ApiResponse<IReadOnlyDictionary<string, Quote>>> GetQuote([Authorize] string? authorization, string symbol, string? apikey = default);
 
 	/// <summary>
 	/// This API allows the developer to get the quote information for multiple symbols
 	/// </summary>
-	/// <param name="token">
+	/// <param name="authorization">
 	/// A current and valid <see cref="Models.Authentication.LoginResponse.AccessToken"/>; optional. If not provided, <paramref name="apikey"/> must be provided.
 	/// </param>
 	/// <param name="symbol">
@@ -46,5 +46,5 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/quotes/apis/get/marketdata/quotes"/>
 	/// </remarks>
 	[Get("/v1/marketdata/quotes")]
-	Task<ApiResponse<IReadOnlyDictionary<string, Quote>>> GetQuotes([Authorize("Bearer")] string? token, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string> symbol, string? apikey = default);
+	Task<ApiResponse<IReadOnlyDictionary<string, Quote>>> GetQuotes([Authorize] string? authorization, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string> symbol, string? apikey = default);
 }

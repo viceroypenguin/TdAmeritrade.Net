@@ -1,4 +1,4 @@
-﻿namespace TdAmeritrade;
+﻿namespace TdAmeritrade.Internal;
 
 using Models.Instruments;
 
@@ -7,7 +7,7 @@ public partial interface ITdAmeritradeApi
 	/// <summary>
 	/// This API allows the developer to search for instrument data, including fundamental data
 	/// </summary>
-	/// <param name="token">
+	/// <param name="authorization">
 	/// A current and valid <see cref="Models.Authentication.LoginResponse.AccessToken"/>; optional. If not provided, <paramref name="apikey"/> must be provided.
 	/// </param>
 	/// <param name="apikey">
@@ -34,12 +34,12 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/instruments/apis/get/instruments"/>
 	/// </remarks>
 	[Get("/v1/instruments")]
-	Task<ApiResponse<IReadOnlyDictionary<string, Instrument>>> GetInstruments([Authorize("Bearer")] string? token, string projection, string symbol, string? apikey = default);
+	Task<ApiResponse<IReadOnlyDictionary<string, Instrument>>> GetInstruments([Authorize] string? authorization, string projection, string symbol, string? apikey = default);
 
 	/// <summary>
 	/// This API allows the developer to get information about a single CUSIP
 	/// </summary>
-	/// <param name="token">
+	/// <param name="authorization">
 	/// A current and valid <see cref="Models.Authentication.LoginResponse.AccessToken"/>; optional. If not provided, <paramref name="apikey"/> must be provided.
 	/// </param>
 	/// <param name="apikey">
@@ -56,5 +56,5 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/instruments/apis/get/instruments/%7Bcusip%7D"/>
 	/// </remarks>
 	[Get("/v1/instruments/{cusip}")]
-	Task<ApiResponse<IReadOnlyList<Instrument>>> GetInstrument([Authorize("Bearer")] string? token, string cusip, string? apikey = default);
+	Task<ApiResponse<IReadOnlyList<Instrument>>> GetInstrument([Authorize] string? authorization, string cusip, string? apikey = default);
 }

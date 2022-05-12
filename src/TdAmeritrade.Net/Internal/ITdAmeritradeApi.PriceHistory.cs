@@ -1,4 +1,4 @@
-﻿namespace TdAmeritrade;
+﻿namespace TdAmeritrade.Internal;
 
 using Models.PriceHistory;
 
@@ -7,7 +7,7 @@ public partial interface ITdAmeritradeApi
 	/// <summary>
 	/// This API allows the developer to get the price history for a single symbol.
 	/// </summary>
-	/// <param name="token">
+	/// <param name="authorization">
 	/// A current and valid <see cref="Models.Authentication.LoginResponse.AccessToken"/>; optional. If not provided, <see cref="PriceHistoryRequest.ApiKey" /> must be provided.
 	/// </param>
 	/// <param name="symbol">The symbol for which to get history</param>
@@ -20,5 +20,5 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/price-history/apis/get/marketdata/%7Bsymbol%7D/pricehistory"/>
 	/// </remarks>
 	[Get("/v1/marketdata/{symbol}/pricehistory")]
-	Task<ApiResponse<PriceHistoryResponse>> GetPriceHistory([Authorize("Bearer")] string? token, string symbol, PriceHistoryRequest? request = default);
+	Task<ApiResponse<PriceHistoryResponse>> GetPriceHistory([Authorize] string? authorization, string symbol, PriceHistoryRequest? request = default);
 }

@@ -1,4 +1,4 @@
-﻿namespace TdAmeritrade;
+﻿namespace TdAmeritrade.Internal;
 
 using Models.Transactions;
 
