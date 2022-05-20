@@ -2,18 +2,18 @@
 
 public enum PeriodType
 {
-	Day,
-	Month,
-	Year,
-	Ytd,
+	[EnumMember(Value = "day")] Day,
+	[EnumMember(Value = "month")] Month,
+	[EnumMember(Value = "year")] Year,
+	[EnumMember(Value = "ytd")] Ytd,
 }
 
 public enum FrequencyType
 {
-	Minute,
-	Daily,
-	Weekly,
-	Monthly,
+	[EnumMember(Value = "minute")] Minute,
+	[EnumMember(Value = "daily")] Daily,
+	[EnumMember(Value = "weekly")] Weekly,
+	[EnumMember(Value = "monthly")] Monthly,
 }
 
 public class PriceHistoryRequest

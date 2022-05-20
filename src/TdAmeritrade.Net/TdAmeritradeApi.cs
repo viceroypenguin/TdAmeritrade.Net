@@ -113,7 +113,7 @@ public partial class TdAmeritradeApi
 						{
 							ClientId = _clientId,
 							RefreshToken = refreshToken,
-							GrantType = "refresh_token",
+							GrantType = Models.Authentication.GrantType.RefreshToken,
 						})
 						.ConfigureAwait(false);
 

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace TdAmeritrade;
 
+using System.Text.Json;
 using Internal;
 
 public static class TdAmeritradeServiceCollectionExtensions
@@ -111,7 +112,16 @@ public static class TdAmeritradeServiceCollectionExtensions
 		this IServiceCollection services)
 	{
 		services
-			.AddRefitClient<ITdAmeritradeApi>()
+			.AddRefitClient<ITdAmeritradeApi>(
+				new RefitSettings
+				{
+					ContentSerializer = new SystemTextJsonContentSerializer(
+						new JsonSerializerOptions
+						{
+							NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals,
+							PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+						}),
+				})
 			.ConfigureHttpClient(c => c.BaseAddress = new Uri("https://api.tdameritrade.com"))
 			.ConfigurePrimaryHttpMessageHandler(() =>
 				new HttpClientHandler

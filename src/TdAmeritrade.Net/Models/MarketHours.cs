@@ -10,14 +10,13 @@ public class MarketHoursResponse
 
 public class MarketHoursResponseConverter : JsonConverter<MarketHoursResponse>
 {
-	private static readonly JsonSerializerOptions s_options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, };
 	public override MarketHoursResponse? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var obj = JsonSerializer.Deserialize<JsonElement>(ref reader);
 		var dictionary = new Dictionary<string, Hour>(StringComparer.OrdinalIgnoreCase);
 		foreach (var x in obj.EnumerateObject())
 		{
-			dictionary[x.Name] = x.Value.Deserialize<Hour>(s_options)!;
+			dictionary[x.Name] = x.Value.Deserialize<Hour>(options)!;
 		}
 		return new() { Hours = dictionary, };
 	}

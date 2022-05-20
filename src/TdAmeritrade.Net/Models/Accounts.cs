@@ -152,20 +152,18 @@ public class Position
 
 public class InstrumentConverter : JsonConverter<Instrument>
 {
-	private static readonly JsonSerializerOptions s_options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, };
-
 	public override Instrument? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var element = JsonSerializer.Deserialize<JsonElement>(ref reader);
 		return element.GetProperty("assetType").GetString() switch
 		{
-			"EQUITY" => element.Deserialize<Equity>(s_options),
-			"INDEX" => element.Deserialize<Equity>(s_options),
-			"FIXED_INCOME" => element.Deserialize<FixedIncome>(s_options),
-			"MUTUAL_FUND" => element.Deserialize<MutualFund>(s_options),
-			"CURRENCY" => element.Deserialize<Currency>(s_options),
-			"CASH_EQUIVALENT" => element.Deserialize<CashEquivalent>(s_options),
-			"OPTION" => element.Deserialize<Option>(s_options),
+			"EQUITY" => element.Deserialize<Equity>(options),
+			"INDEX" => element.Deserialize<Equity>(options),
+			"FIXED_INCOME" => element.Deserialize<FixedIncome>(options),
+			"MUTUAL_FUND" => element.Deserialize<MutualFund>(options),
+			"CURRENCY" => element.Deserialize<Currency>(options),
+			"CASH_EQUIVALENT" => element.Deserialize<CashEquivalent>(options),
+			"OPTION" => element.Deserialize<Option>(options),
 			_ => throw new JsonException("Unable to parse Instrument node"),
 		};
 	}

@@ -1,16 +1,34 @@
 ﻿namespace TdAmeritrade.Models.Authentication;
 
 /// <summary>
+/// Specifies the type of login requested
+/// </summary>
+public enum GrantType
+{
+	/// <summary>
+	/// Provides authorization via an initial login code
+	/// </summary>
+	[EnumMember(Value = "authorization_code")]
+	AuthorizationCode,
+
+	/// <summary>
+	/// Provides authorization via a previously obtained refresh token
+	/// </summary>
+	[EnumMember(Value = "refresh_token")]
+	RefreshToken,
+}
+
+/// <summary>
 /// The parameters for the login API
 /// </summary>
 public class LoginRequest
 {
 	/// <summary>
-	/// The grant type of the oAuth scheme.
+	/// The grant type of the oAuth scheme
 	/// </summary>
-	/// <value>Valid values are <c>"authorization_code"</c> if <see cref="Code"/> is provided, or <c>"refresh_token"</c> if <see cref="RefreshToken"/> is provided.</value>
+	/// 
 	[AliasAs("grant_type")]
-	public string GrantType { get; set; } = string.Empty;
+	public GrantType GrantType { get; set; }
 
 	/// <summary>
 	/// Previously provided Refresh Token
@@ -22,8 +40,7 @@ public class LoginRequest
 	public string? RefreshToken { get; set; }
 
 	/// <summary>
-	/// Set to <c>"offline"</c> to receive a refresh token on an <c>"authorization_code"</c> grant type request. 
-	/// Do not set to offline on a <c>"refresh_token"</c> grant type request when getting an access token.
+	/// Set to <c>"offline"</c> to receive a refresh token on an authorization_code grant type request. Do not set to offline on a refresh_token grant type request.
 	/// </summary>
 	[AliasAs("access_type")]
 	public string? AccessType { get; set; }
@@ -34,6 +51,7 @@ public class LoginRequest
 	/// <remarks>
 	/// Required if trying to use authorization code grant
 	/// </remarks>
+	/// <example>TBD</example>
 	[AliasAs("code")]
 	public string? Code { get; set; }
 
