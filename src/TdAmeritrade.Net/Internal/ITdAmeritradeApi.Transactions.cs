@@ -20,5 +20,5 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/transaction-history/apis/get/accounts/%7BaccountId%7D/transactions-0"/>
 	/// </remarks>
 	[Get("/v1/accounts/{accountId}/transactions")]
-	Task<IReadOnlyList<Transaction>> GetTransactions([Authorize] string token, string accountId, TransactionSearchOptions? searchOptions);
+	Task<IReadOnlyList<Transaction>> GetTransactions([Header("Authorization")] string token, string accountId, TransactionSearchOptions? searchOptions);
 }

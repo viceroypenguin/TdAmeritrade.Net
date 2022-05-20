@@ -1,6 +1,6 @@
 ﻿namespace TdAmeritrade.Internal;
 
-using Models.MarketData;
+using Models.MarketHours;
 
 public partial interface ITdAmeritradeApi
 {
@@ -11,7 +11,7 @@ public partial interface ITdAmeritradeApi
 	/// A current and valid <see cref="Models.Authentication.LoginResponse.AccessToken"/>; optional. If not provided, <paramref name="apikey"/> must be provided.
 	/// </param>
 	/// <param name="market">
-	/// The specified market
+	/// The market for which you're requesting market hours. Valid markets are EQUITY, OPTION, FUTURE, BOND, or FOREX.
 	/// </param>
 	/// <param name="apikey">
 	/// Pass your OAuth User ID to make an unauthenticated request for delayed data.
@@ -21,16 +21,16 @@ public partial interface ITdAmeritradeApi
 	/// </param>
 	/// <returns>
 	/// If successful, the return includes information about the hours of the market.
-	/// Upon failure, the return will include information about the failure.
 	/// </returns>
+	/// <exception cref="ApiException" />
 	/// <remarks>
 	/// See also: <seealso href="https://developer.tdameritrade.com/market-hours/apis/get/marketdata/%7Bmarket%7D/hours"/>
 	/// </remarks>
 	[Get("/v1/marketdata/{market}/hours")]
-	Task<ApiResponse<IReadOnlyDictionary<string, MarketDataResponse>>> GetMarketHours([Authorize] string? authorization, string market, string? apikey = default, string? date = default);
+	Task<IReadOnlyDictionary<string, MarketHoursResponse>> GetMarketHours([Header("Authorization")] string? authorization, string? apikey, string market, string? date = default);
 
 	/// <summary>
-	/// This API allows the developer to get the market hours for a specified single market
+	/// This API allows the developer to get the market hours for a multiple markets
 	/// </summary>
 	/// <param name="authorization">
 	/// A current and valid <see cref="Models.Authentication.LoginResponse.AccessToken"/>; optional. If not provided, <paramref name="apikey"/> must be provided.
@@ -46,15 +46,15 @@ public partial interface ITdAmeritradeApi
 	/// </param>
 	/// <returns>
 	/// If successful, the return includes information about the hours of the market.
-	/// Upon failure, the return will include information about the failure.
 	/// </returns>
+	/// <exception cref="ApiException" />
 	/// <remarks>
 	/// See also: <seealso href="https://developer.tdameritrade.com/market-hours/apis/get/marketdata/hours"/>
 	/// </remarks>
 	[Get("/v1/marketdata/hours")]
-	Task<ApiResponse<IReadOnlyDictionary<string, MarketDataResponse>>> GetMarketHours(
-		[Authorize] string? authorization,
+	Task<IReadOnlyDictionary<string, MarketHoursResponse>> GetMarketHours(
+		[Header("Authorization")] string? authorization,
+		string? apikey,
 		[Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string> markets,
-		string? apikey = default,
 		string? date = default);
 }

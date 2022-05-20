@@ -21,7 +21,7 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/account-access/apis/get/accounts-0"/>
 	/// </remarks>
 	[Get("/v1/accounts")]
-	Task<IReadOnlyList<AccountContainer>> GetAccounts([Authorize] string? authorization, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string>? fields = default);
+	Task<IReadOnlyList<AccountContainer>> GetAccounts([Header("Authorization")] string? authorization, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string>? fields = default);
 
 	/// <summary>
 	/// This API allows the developer to get information about a specific account
@@ -43,5 +43,5 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/account-access/apis/get/accounts/%7BaccountId%7D-0"/>
 	/// </remarks>
 	[Get("/v1/accounts/{accountId}")]
-	Task<AccountContainer> GetAccount([Authorize] string? authorization, string? accountId, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string>? fields = default);
+	Task<AccountContainer> GetAccount([Header("Authorization")] string? authorization, string? accountId, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string>? fields = default);
 }

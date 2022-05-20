@@ -18,13 +18,13 @@ public partial interface ITdAmeritradeApi
 	/// </param>
 	/// <returns>
 	/// If successful, the return includes quote information for the requested symbol.
-	/// Upon failure, the return will include information about the failure.
 	/// </returns>
+	/// <exception cref="ApiException" />
 	/// <remarks>
 	/// See also: <seealso href="https://developer.tdameritrade.com/quotes/apis/get/marketdata/%7Bsymbol%7D/quotes"/>
 	/// </remarks>
 	[Get("/v1/marketdata/{symbol}/quotes")]
-	Task<ApiResponse<IReadOnlyDictionary<string, Quote>>> GetQuote([Authorize] string? authorization, string symbol, string? apikey = default);
+	Task<IReadOnlyDictionary<string, Quote>> GetQuote([Header("Authorization")] string? authorization, string? apikey, string symbol);
 
 	/// <summary>
 	/// This API allows the developer to get the quote information for multiple symbols
@@ -40,11 +40,11 @@ public partial interface ITdAmeritradeApi
 	/// </param>
 	/// <returns>
 	/// If successful, the return includes quote information for the requested symbols.
-	/// Upon failure, the return will include information about the failure.
 	/// </returns>
+	/// <exception cref="ApiException" />
 	/// <remarks>
 	/// See also: <seealso href="https://developer.tdameritrade.com/quotes/apis/get/marketdata/quotes"/>
 	/// </remarks>
 	[Get("/v1/marketdata/quotes")]
-	Task<ApiResponse<IReadOnlyDictionary<string, Quote>>> GetQuotes([Authorize] string? authorization, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string> symbol, string? apikey = default);
+	Task<IReadOnlyDictionary<string, Quote>> GetQuotes([Header("Authorization")] string? authorization, string? apikey, [Query(CollectionFormat = CollectionFormat.Csv)] IReadOnlyList<string> symbol);
 }

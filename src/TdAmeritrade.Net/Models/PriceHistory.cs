@@ -19,11 +19,6 @@ public enum FrequencyType
 public class PriceHistoryRequest
 {
 	/// <summary>
-	/// Pass your OAuth User ID to make an unauthenticated request for delayed data.
-	/// </summary>
-	[AliasAs("apikey")] public string? ApiKey { get; set; }
-
-	/// <summary>
 	/// <p> The type of period to show. </p>
 	/// </summary>
 	[AliasAs("periodType")] public PeriodType? PeriodType { get; set; }

@@ -28,13 +28,13 @@ public partial interface ITdAmeritradeApi
 	/// </param>
 	/// <returns>
 	/// If successful, the return includes the search results.
-	/// Upon failure, the return will include information about the failure.
 	/// </returns>
+	/// <exception cref="ApiException" />
 	/// <remarks>
 	/// See also: <seealso href="https://developer.tdameritrade.com/instruments/apis/get/instruments"/>
 	/// </remarks>
 	[Get("/v1/instruments")]
-	Task<ApiResponse<IReadOnlyDictionary<string, Instrument>>> GetInstruments([Authorize] string? authorization, string projection, string symbol, string? apikey = default);
+	Task<IReadOnlyDictionary<string, Instrument>> GetInstruments([Header("Authorization")] string? authorization, string? apikey, string projection, string symbol);
 
 	/// <summary>
 	/// This API allows the developer to get information about a single CUSIP
@@ -50,11 +50,11 @@ public partial interface ITdAmeritradeApi
 	/// </param>
 	/// <returns>
 	/// If successful, the return includes the search results.
-	/// Upon failure, the return will include information about the failure.
 	/// </returns>
+	/// <exception cref="ApiException" />
 	/// <remarks>
 	/// See also: <seealso href="https://developer.tdameritrade.com/instruments/apis/get/instruments/%7Bcusip%7D"/>
 	/// </remarks>
 	[Get("/v1/instruments/{cusip}")]
-	Task<ApiResponse<IReadOnlyList<Instrument>>> GetInstrument([Authorize] string? authorization, string cusip, string? apikey = default);
+	Task<IReadOnlyList<Instrument>> GetInstrument([Header("Authorization")] string? authorization, string? apikey, string cusip);
 }

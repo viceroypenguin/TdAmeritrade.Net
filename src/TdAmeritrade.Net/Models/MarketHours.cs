@@ -1,17 +1,17 @@
 ﻿using System.Text.Json;
 
-namespace TdAmeritrade.Models.MarketData;
+namespace TdAmeritrade.Models.MarketHours;
 
-[JsonConverter(typeof(MarketDataResponseConverter))]
-public class MarketDataResponse
+[JsonConverter(typeof(MarketHoursResponseConverter))]
+public class MarketHoursResponse
 {
 	public IReadOnlyDictionary<string, Hour>? Hours { get; set; }
 }
 
-public class MarketDataResponseConverter : JsonConverter<MarketDataResponse>
+public class MarketHoursResponseConverter : JsonConverter<MarketHoursResponse>
 {
 	private static readonly JsonSerializerOptions s_options = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, };
-	public override MarketDataResponse? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override MarketHoursResponse? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var obj = JsonSerializer.Deserialize<JsonElement>(ref reader);
 		var dictionary = new Dictionary<string, Hour>(StringComparer.OrdinalIgnoreCase);
@@ -22,7 +22,7 @@ public class MarketDataResponseConverter : JsonConverter<MarketDataResponse>
 		return new() { Hours = dictionary, };
 	}
 
-	public override void Write(Utf8JsonWriter writer, MarketDataResponse value, JsonSerializerOptions options) => throw new NotImplementedException();
+	public override void Write(Utf8JsonWriter writer, MarketHoursResponse value, JsonSerializerOptions options) => throw new NotImplementedException();
 }
 
 public class Hour

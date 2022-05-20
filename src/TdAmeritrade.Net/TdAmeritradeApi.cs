@@ -119,10 +119,7 @@ public partial class TdAmeritradeApi
 
 					s_logGeneratedToken(_logger, attemptId, default);
 
-					if (!string.Equals(content.TokenType, "Bearer", StringComparison.Ordinal))
-						throw new InvalidOperationException("Unknown Authorization Token Type");
-
-					return content.AccessToken;
+					return content.TokenType + " " + content.AccessToken;
 				}
 				catch (ApiException ex)
 				{
