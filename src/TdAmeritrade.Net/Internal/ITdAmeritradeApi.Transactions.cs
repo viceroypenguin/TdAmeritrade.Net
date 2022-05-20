@@ -14,11 +14,11 @@ public partial interface ITdAmeritradeApi
 	/// <param name="searchOptions">Search filters for the transactions</param>
 	/// <returns>
 	/// If successful, the return includes a list of associated accounts and information about each. 
-	/// Upon failure, the return will include information about the failure.
 	/// </returns>
+	/// <exception cref="ApiException" />
 	/// <remarks>
 	/// See also: <seealso href="https://developer.tdameritrade.com/transaction-history/apis/get/accounts/%7BaccountId%7D/transactions-0"/>
 	/// </remarks>
 	[Get("/v1/accounts/{accountId}/transactions")]
-	Task<ApiResponse<IReadOnlyList<Transaction>>> GetTransactions([Authorize("Bearer")] string token, string accountId, TransactionSearchOptions? searchOptions);
+	Task<IReadOnlyList<Transaction>> GetTransactions([Authorize] string token, string accountId, TransactionSearchOptions? searchOptions);
 }
