@@ -18,5 +18,5 @@ public partial interface ITdAmeritradeApi
 	/// See also: <seealso href="https://developer.tdameritrade.com/content/authentication-faq"/>
 	/// </remarks>
 	[Post("/v1/oauth2/token")]
-	Task<ApiResponse<LoginResponse>> Login([Body(BodySerializationMethod.UrlEncoded)] LoginRequest loginRequest);
+	Task<LoginResponse> Login([Body(BodySerializationMethod.UrlEncoded)] LoginRequest loginRequest);
 }
