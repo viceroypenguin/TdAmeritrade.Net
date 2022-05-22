@@ -1,6 +1,6 @@
 # Going.Plaid
 ![Build status](https://github.com/viceroypenguin/TdAmeritrade.Net/actions/workflows/build.yml/badge.svg)
-[![NuGet](https://img.shields.io/nuget/v/TdAmeritrade.Net.svg?style=plastic)](https://www.nuget.org/packages/TdAmeritrade.NetPlaid/)
+[![NuGet](https://img.shields.io/nuget/v/TdAmeritrade.Net.svg?style=plastic)](https://www.nuget.org/packages/TdAmeritrade.Net/)
 ---
 
 ## What is TdAmeritrade.Net?
