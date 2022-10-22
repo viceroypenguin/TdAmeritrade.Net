@@ -1,4 +1,7 @@
-# Going.Plaid
+# TdAmeritrade.Net
+
+### NB: Archiving due to TdAmeritrade accounts moving to Schwab
+
 ![Build status](https://github.com/viceroypenguin/TdAmeritrade.Net/actions/workflows/build.yml/badge.svg)
 [![NuGet](https://img.shields.io/nuget/v/TdAmeritrade.Net.svg?style=plastic)](https://www.nuget.org/packages/TdAmeritrade.Net/)
 ---
